@@ -9,6 +9,6 @@ public interface DocumentRequestDao {
 	
 	
 	
-	public void manipulateData(DocumentRequest[] DocumentRequest) throws MalformedURLException, IOException;
+	public  void manipulateData(DocumentRequest[] DocumentRequest) throws MalformedURLException, IOException;
 	
 }

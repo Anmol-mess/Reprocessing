@@ -20,6 +20,7 @@ public class BasicProducer {
 
     @Autowired
     private KafkaProducer<String, String> getBasicStringStringProducer;
+    
     public void runStringStringProducer(String topic, String key, String value) {
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
         getBasicStringStringProducer.send(record, new Callback() {

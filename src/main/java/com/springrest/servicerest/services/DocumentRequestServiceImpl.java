@@ -36,6 +36,7 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.springrest.servicerest.Core.BasicProducer;
+import com.springrest.servicerest.Core.GenericParser;
 import com.springrest.servicerest.Core.Constants;
 import com.springrest.servicerest.Core.CoreUtil;
 import com.springrest.servicerest.Core.KeySchema;
@@ -45,7 +46,6 @@ import org.xml.sax.InputSource;
 import com.springrest.servicerest.model.WorkflowTrackerDto;
 
 import ca.uhn.hl7v2.model.Message;
-import ca.uhn.hl7v2.parser.GenericParser;
 import ca.uhn.hl7v2.parser.PipeParser;
 import ca.uhn.hl7v2.util.Terser;
 
@@ -60,21 +60,21 @@ public class DocumentRequestServiceImpl implements DocumentRequestDao	{
 	
 	SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	
-	private String fileTimeStamp;
+	private  String fileTimeStamp;
 	
-	private String s3fileTimeStamp;
+	private  String s3fileTimeStamp;
 	
-	private AmazonS3 s3Client;
+	private  AmazonS3 s3Client;
 	
-	private static Logger log = LoggerFactory.getLogger(DocumentRequest.class);
+	private static   Logger log = LoggerFactory.getLogger(DocumentRequest.class);
 	
 	@Autowired
 	GenericParser genericParser;
 	
 	
 	
-	@Override
-	public void manipulateData(DocumentRequest[] DocumentRequest) throws MalformedURLException, IOException {
+	
+	public  void manipulateData(DocumentRequest[] DocumentRequest) throws MalformedURLException, IOException {
 		
 		 for (DocumentRequest documentRequest : DocumentRequest) {
 	            // Extract the necessary data from the request
@@ -174,7 +174,7 @@ public class DocumentRequestServiceImpl implements DocumentRequestDao	{
 		
 		}
 
-	public String returnS3Url(String s3Url) throws UnsupportedEncodingException {
+	public  String returnS3Url(String s3Url) throws UnsupportedEncodingException {
 		String finalUrl = "";
 		try {
 			AmazonS3URI amazonS3URI = new AmazonS3URI(s3Url);
@@ -202,7 +202,7 @@ public class DocumentRequestServiceImpl implements DocumentRequestDao	{
 		return finalUrl;
 	}
 	
-	private String loadDocument(URL url) throws FileNotFoundException, Exception {
+	private  String loadDocument(URL url) throws FileNotFoundException, Exception {
 		int count = 0;
 		int maxTries = 3;
 		while (true) {
@@ -225,7 +225,7 @@ public class DocumentRequestServiceImpl implements DocumentRequestDao	{
 
 	}
 	
-	private String fixPD1(String message) {
+	private  String fixPD1(String message) {
 		int a = message.indexOf("\nPID|");
 		int b = message.indexOf("\r", a);
 		int c = message.indexOf("\nPD1|");
@@ -239,7 +239,7 @@ public class DocumentRequestServiceImpl implements DocumentRequestDao	{
 		return message;
 	}
 
-	public static String s3TimeStamp(String bucketName, String output4){
+	public String s3TimeStamp(String bucketName, String output4){
         AmazonS3 s3Client = null;
         s3Client = AmazonS3ClientBuilder.standard()
         .withCredentials(new InstanceProfileCredentialsProvider(false))

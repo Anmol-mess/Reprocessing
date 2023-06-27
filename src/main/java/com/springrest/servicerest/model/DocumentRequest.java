@@ -1,5 +1,7 @@
 package com.springrest.servicerest.model;
 
+import com.springrest.servicerest.entities.WorkflowTracker;
+
 public class DocumentRequest {
 	  
 	private String entityId;
@@ -31,5 +33,7 @@ public class DocumentRequest {
 	    public void setLocationUrl(String locationUrl) {
 	        this.locationUrl = locationUrl;
 	    }
+	   
+	  
 	    
 }
